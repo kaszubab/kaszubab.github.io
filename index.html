@@ -1,0 +1,14 @@
+<html>
+  <body>
+    <h1>Github Pages Test Page</h1>
+    <button id="read">Respond to iframe origin</button>
+    <script>
+      document.getElementById("read").onclick = () => {
+        parent.postMessage(
+          { pluginMessage: { type: "iframe-test" }, pluginId: "*" },
+          "*"
+        );
+      };
+    </script>
+  </body>
+</html>
