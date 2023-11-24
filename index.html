@@ -3,12 +3,14 @@
     <h1>Github Pages Test Page</h1>
     <button id="read">Respond to iframe origin</button>
     <script>
-      document.getElementById("read").onclick = () => {
-        console.log("Sending message to iframe", parent);
-        parent.postMessage(
-          { pluginMessage: { type: "iframe-test" }, pluginId: "*" },
-          "*"
-        );
+      document.getElementById("read").onclick = async () => {
+        const params = new URLSearchParams(window.location.search);
+        if (params.has("client_id") && params.has("state")) {
+          const client_id = params.get("client_id");
+          const state = params.get("state");
+
+          window.location.href = `https://github.com/login/oauth/authorize?client_id=${client_id}&state=${state}`;
+        }
       };
     </script>
   </body>
